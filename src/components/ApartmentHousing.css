@@ -1,0 +1,271 @@
+/* ============================================
+   APARTMENT HOUSING PAGE — Modern CSS
+   ============================================ */
+
+.housing-page {
+  direction: rtl;
+  min-height: 100vh;
+  background: var(--color-bg);
+  font-family: var(--font-arabic);
+}
+
+/* ── Page Header ── */
+.housing-page-header {
+  padding: 120px clamp(16px, 5%, 72px) 60px;
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-light) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+.housing-page-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(245,166,35,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.housing-page-header::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(245,166,35,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.housing-page-header h1 {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 900;
+  color: var(--color-white);
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+  animation: fadeInDown 0.7s ease both;
+}
+.housing-page-header p {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 1;
+  animation: fadeInDown 0.7s 0.1s ease both;
+}
+
+.add-listing-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 36px;
+  background: var(--color-accent);
+  color: var(--color-primary);
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 1rem;
+  font-weight: 800;
+  font-family: var(--font-arabic);
+  cursor: pointer;
+  transition: var(--transition-base);
+  box-shadow: var(--shadow-glow);
+  position: relative;
+  z-index: 1;
+  animation: fadeInDown 0.7s 0.2s ease both;
+}
+.add-listing-btn:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(245,166,35,0.45);
+}
+.add-listing-btn:active { transform: translateY(-1px); }
+
+/* ── Loading / Error States ── */
+.housing-loading,
+.housing-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 20px;
+  text-align: center;
+  min-height: 60vh;
+}
+.housing-loading p { color: var(--color-text-muted); font-size: 1rem; margin-top: 8px; }
+.housing-error h3 { color: var(--color-danger); font-size: 1.2rem; margin-bottom: 16px; }
+
+.retry-btn {
+  padding: 12px 28px;
+  background: var(--color-info);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: var(--font-arabic);
+  cursor: pointer;
+  transition: var(--transition-base);
+}
+.retry-btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+/* ── Apartments Grid ── */
+.apartments-grid-wrapper {
+  max-width: 1300px;
+  margin-inline: auto;
+  padding: 56px clamp(16px, 4%, 48px);
+}
+
+.apartments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+}
+
+/* ── Apartment Card ── */
+.apt-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-base);
+  animation: fadeInUp 0.5s ease both;
+  border: 1px solid var(--color-border);
+}
+.apt-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Card image */
+.apt-card-image {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: var(--color-bg);
+  flex-shrink: 0;
+}
+.apt-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.apt-card:hover .apt-card-image img { transform: scale(1.07); }
+
+.apt-price-badge {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  background: var(--color-accent);
+  color: var(--color-primary);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(245,166,35,0.4);
+}
+
+.apt-category-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(10,20,35,0.75);
+  backdrop-filter: blur(8px);
+  color: white;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+/* Card body */
+.apt-card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 12px;
+  text-align: right;
+}
+.apt-card-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--color-text-heading);
+  line-height: 1.4;
+}
+.apt-card-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+/* Features row */
+.apt-card-features {
+  display: flex;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.apt-feature {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--color-text-body);
+}
+.apt-feature-icon { font-size: 1rem; }
+
+/* Details button */
+.apt-details-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.92rem;
+  font-family: var(--font-arabic);
+  cursor: pointer;
+  transition: var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: auto;
+}
+.apt-details-btn:hover {
+  background: var(--color-accent);
+  color: var(--color-primary);
+}
+
+/* ── Empty state ── */
+.no-apartments {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 0;
+  color: var(--color-text-muted);
+}
+.no-apartments .icon { font-size: 3.5rem; margin-bottom: 12px; }
+.no-apartments p { font-size: 1.1rem; }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .apartments-grid { grid-template-columns: 1fr; }
+  .apt-card-image { height: 195px; }
+}
